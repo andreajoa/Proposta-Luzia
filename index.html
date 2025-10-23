@@ -1317,4 +1317,40 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function closePopup(type
+    <script>
+        // Definir funções antes de usar
+        function openPopup(type) {
+            const popup = document.getElementById('popup-' + type);
+            if (popup) {
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closePopup(type) {
+            const popup = document.getElementById('popup-' + type);
+            if (popup) {
+                popup.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Esperar o DOM carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fechar popup ao clicar fora
+            document.querySelectorAll('.popup-overlay').forEach(overlay => {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+
+            // Debug - verificar se popups existem
+            console.log('Popup Mentoria:', document.getElementById('popup-mentoria'));
+            console.log('Popup Gestão:', document.getElementById('popup-gestao'));
+        });
+    </script>
+</body>
+</html>
